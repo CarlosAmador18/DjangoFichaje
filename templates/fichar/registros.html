@@ -1,0 +1,417 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Registros</title>
+    <style>
+        :root {
+            --primary-color: #014672;
+            --secondary-color: #169180;
+            --accent-color: #4783f1;
+            --danger-color: #357ab7;
+            --warning-color: #4783f1;
+            --light-bg: #f5f7fa;
+            --dark-bg: #014672;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #169180;
+            --shadow: 0 4px 15px rgba(72, 129, 227, 0.4);
+            --card-shadow: var(--shadow);
+            --hover-color: var(--accent-color);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 80px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 24px;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 80px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .content-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .container {
+            width: 100%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        form {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        #volver {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--danger-color);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        #volver:hover {
+            background-color: var(--accent-color);
+            padding: 15px 25px;
+        }
+
+        .registros-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        .registro-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease;
+            list-style: none;
+            width: 100%;
+            text-align: center;
+        }
+
+        .registro-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .registro-info {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .pincho {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            display: block;
+            margin: 0.5rem auto;
+        }
+
+        .pincho:hover {
+            transform: scale(1.1);
+        }
+
+        #mapid {
+            height: 200px;
+            width: 100%;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        #total {
+            font-size: 36px;
+            color: var(--secondary-color);
+            margin: 2rem 0;
+            font-weight: bold;
+        }
+
+
+
+        @media (max-width: 1200px) {
+            .registros-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 900px) {
+            .registros-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 60px;
+            }
+            
+            .main-content {
+                margin-left: 60px;
+            }
+            
+            .filter-options {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .registros-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar navigation -->
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-home"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-user"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-envelope"></i>
+        </div>
+    </div>
+
+    <!-- Main content area -->
+    <div class="main-content">
+        <div class="header">
+            <h1>Registros Obtenidos</h1>
+            
+        </div>
+
+        <div class="content-container">
+            <form action="/obtener/" method="POST">
+                {% csrf_token %}
+                <button type="submit">Actualizar</button>
+            </form>
+
+            {% if registros %}
+            <div class="registros-grid">
+                {% for registro in registros|dictsortreversed:"FECHA" %}
+                <div class="registro-item">
+                    <div class="registro-info">
+                        <strong>Fecha:</strong> {{ registro.FECHA }}<br>
+                        <strong>Tipo:</strong> {{ registro.TIPO }}<br>
+                        <strong>Descripción:</strong> {{ registro.DESCRIPCION }}
+                    </div>
+                    <img src="{% static 'admin/img/ubicaciones.png' %}" alt="Ubicación" width="20" class="pincho">
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p>No se encontraron registros.</p>
+            {% endif %}
+
+            <div id="total"></div>
+            <button id="volver">Volver</button>
+        </div>
+    </div>
+
+    <script>
+        // Existing JavaScript remains unchanged
+        function totalhoras() {
+            let total = 0;
+            const registros = Array.from(document.querySelectorAll('.registro-item'));
+            const totalElement = document.getElementById('total');
+            
+            if (!totalElement) {
+                console.error('Total element not found');
+                return;
+            }
+            
+            for(let i = 0; i < registros.length - 1; i++) {
+                const registro1 = registros[i];
+                const registro2 = registros[i + 1];
+                
+                const tipo1 = registro1.querySelector('.registro-info').textContent.split('Tipo:')[1].split('Descripción:')[0].trim();
+                const tipo2 = registro2.querySelector('.registro-info').textContent.split('Tipo:')[1].split('Descripción:')[0].trim();
+                
+                if(tipo1 === 'Entrada' && tipo2 === 'Salida') {
+                    const fecha1 = registro1.querySelector('.registro-info').textContent.split('Fecha:')[1].split('Tipo:')[0].trim();
+                    const fecha2 = registro2.querySelector('.registro-info').textContent.split('Fecha:')[1].split('Tipo:')[0].trim();
+                    
+                    const hora1 = fecha1.split(' ')[1];
+                    const hora2 = fecha2.split(' ')[1];
+                    
+                    const [h1, m1, s1] = hora1.split(':').map(Number);
+                    const [h2, m2, s2] = hora2.split(':').map(Number);
+                    
+                    const segundos1 = h1 * 3600 + m1 * 60 + s1;
+                    const segundos2 = h2 * 3600 + m2 * 60 + s2;
+                    
+                    total += segundos1 - segundos2;
+                    i++;
+                    
+                }
+            }
+            
+            const hours = Math.floor(total / 3600);
+            const minutes = Math.floor((total % 3600) / 60);
+            const seconds = total % 60;
+            
+            const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            totalElement.textContent = timeString;
+        }
+
+        totalhoras();
+        document.getElementById("volver").addEventListener("click", () => {
+            window.location.href = "/fichar/";
+        });
+
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0,
+        };
+
+        document.querySelectorAll(".pincho").forEach(pincho => {
+            pincho.addEventListener("click", () => {
+                function success(pos) {
+                    let padre = pincho.closest('.registro-item');
+
+                    document.querySelectorAll('#mapid').forEach(mapa => {
+                        mapa.remove();
+                    });
+
+                    let hijo = document.createElement("div");
+                    hijo.setAttribute("id", "mapid");
+                    padre.appendChild(hijo);
+
+                    const crd = pos.coords;
+                    const map = L.map('mapid', {
+                        zoomControl: false,
+                        scrollWheelZoom: false,
+                        doubleClickZoom: false,
+                        boxZoom: false,
+                        keyboard: false,
+                        dragging: false
+                    }).setView([crd.latitude, crd.longitude], 16);
+
+                    localStorage.setItem('latitud', crd.latitude);
+                    localStorage.setItem('longitud', crd.longitude);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 16,
+                    }).addTo(map);
+
+                    L.marker([crd.latitude, crd.longitude]).addTo(map);
+
+                    window.latitude = crd.latitude.toString();
+                    window.longitude = crd.longitude.toString();
+                }
+
+                function error(err) {
+                    console.warn(`ERROR(${err.code}): ${err.message}`);
+                }
+
+                navigator.geolocation.getCurrentPosition(success, error, options);
+            });
+        });
+    </script>
+</body>
+
+</html>

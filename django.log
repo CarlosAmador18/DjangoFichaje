@@ -1,0 +1,346 @@
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 188, in registro
+    fecha = datetime.now()('%Y-%m-%d %H:%M:%S')
+TypeError: 'datetime.datetime' object is not callable
+"POST /registro/ HTTP/1.1" 500 67403
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 188, in registro
+    fecha = datetime.now()('%Y-%m-%d %H:%M:%S')
+TypeError: 'datetime.datetime' object is not callable
+"POST /registro/ HTTP/1.1" 500 67403
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 214, in registro
+    print(f"Payload enviado: {json.dumps(payload, indent=4)}")
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\__init__.py", line 234, in dumps
+    return cls(
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 201, in encode
+    chunks = list(chunks)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 431, in _iterencode
+    yield from _iterencode_dict(o, _current_indent_level)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 325, in _iterencode_list
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 405, in _iterencode_dict
+    yield from chunks
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 438, in _iterencode
+    o = _default(o)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.9_3.9.3568.0_x64__qbz5n2kfra8p0\lib\json\encoder.py", line 179, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type datetime is not JSON serializable
+"POST /registro/ HTTP/1.1" 500 137929
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 191, in registro
+    latitude = datos.get('latitude')
+AttributeError: 'bytes' object has no attribute 'get'
+"POST /registro/ HTTP/1.1" 500 66940
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 191, in registro
+    latitude = datos.get('latitude')
+AttributeError: 'bytes' object has no attribute 'get'
+"POST /registro/ HTTP/1.1" 500 66940
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 227, in registro
+    response = requests.post(api_url, data=payload)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+TypeError: request() got an unexpected keyword argument 'dsata'
+"POST /registro/ HTTP/1.1" 500 80110
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 220, in registro
+    response = requests.post(api_url, data=payload)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\requests\api.py", line 115, in post
+    return request("post", url, data=data, json=json, **kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+TypeError: request() got an unexpected keyword argument 'dar'
+"POST /registro/ HTTP/1.1" 500 80223
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 270, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 78033
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 270, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 84952
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 268, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 84794
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68073
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68073
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68232
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68074
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68074
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68074
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68074
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    self.check_response(response, callback)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 332, in check_response
+    raise ValueError(
+ValueError: The view fichar.views.obtener_registros didn't return an HttpResponse object. It returned None instead.
+"GET /registro/ HTTP/1.1" 500 68074
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 269, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 86172
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 269, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 86196
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 268, in obtener_registros
+    return JsonResponse(registros, status=200)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\http\response.py", line 724, in __init__
+    raise TypeError(
+TypeError: In order to allow non-dict objects to be serialized set the safe parameter to False.
+"GET /registro/ HTTP/1.1" 500 86198
+Internal Server Error: /registro/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 251, in irregistros
+    return render(request, "fichar/registro.html")
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: fichar/registro.html
+"GET /registro/ HTTP/1.1" 500 82394
+Internal Server Error: /obtener/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 279, in obtener_registros
+    return render(
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registro.html
+"POST /obtener/ HTTP/1.1" 500 91278
+Internal Server Error: /obtener/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 295, in obtener_registros
+    return render(
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registro.html
+"GET /obtener/ HTTP/1.1" 500 81483
+Internal Server Error: /obtener/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 295, in obtener_registros
+    return render(
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registro.html
+"GET /obtener/ HTTP/1.1" 500 81484
+Internal Server Error: /obtener/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\ficharDjango\fichar\views.py", line 279, in obtener_registros
+    return render(
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\shortcuts.py", line 24, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: registros.html
+"POST /obtener/ HTTP/1.1" 500 91295
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+AttributeError: 'function' object has no attribute 'get'
+"GET /login/ HTTP/1.1" 500 66477
+Internal Server Error: /login/
+Traceback (most recent call last):
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\utils\deprecation.py", line 136, in __call__
+    response = self.process_response(request, response)
+  File "C:\Users\PROGRAMACION8\Desktop\Proyecto Fichar\fichar.env\lib\site-packages\django\middleware\clickjacking.py", line 27, in process_response
+    if response.get("X-Frame-Options") is not None:
+AttributeError: 'function' object has no attribute 'get'
+"GET /login/ HTTP/1.1" 500 66203

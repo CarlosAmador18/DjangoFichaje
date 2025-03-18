@@ -1,0 +1,115 @@
+body {
+    font-family: 'Courier New';
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    width: 400px;
+}
+
+h1 {
+    font-size: 50px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+}
+
+label {
+    font-size: 18px;
+    color: white;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    border: 2px solid #014672;
+    border-radius: 8px;
+    font-size: 16px;
+    color: #333;
+    background-color: white;
+    transition: 0.3s ease-in-out;
+}
+
+input::placeholder {
+    color: #aaa;
+    text-align: center;
+}
+
+input:focus {
+    outline: none;
+    border-color: #169180;
+    box-shadow: 0 0 10px rgba(72, 129, 227, 0.5);
+    transition: 0.3s ease-in-out;
+}
+
+button {
+    background-color: #169180;
+    color: white;
+    font-size: 18px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.4s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #4783f1;
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(72, 129, 227, 0.4);
+}
+
+button:active {
+    background-color: #357ab7;
+    box-shadow: none;
+    transform: scale(1.02);
+}
+
+#video_background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.8);
+}
+
+#video_pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: -1;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}

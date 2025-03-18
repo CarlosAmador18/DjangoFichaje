@@ -1,0 +1,33 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'admin/css/index.css' %}">
+    <title>Fichar</title>
+</head>
+<body>
+    <video autoplay loop muted playsinline id="video_background">
+        <source src="{% static 'admin/img/bg.mp4' %}" type="video/mp4">
+    </video>
+
+    <form action="" method="POST">
+        <img src="{% static 'admin/img/logo.png' %}" alt="">
+        <br>
+        {% csrf_token %}
+        <label for="empresa">Código de empresa</label>
+        <input type="text" id="cod_empresa" name="cod_empresa" required placeholder="Empresa">
+        <br>
+        <label for="usuario">Código de usuario</label>
+        <input type="text" id="cod_usuario" name="cod_usuario" required placeholder="Usuario">
+        <br>
+        <label for="clave_usuario">Contraseña de usuario</label>
+        <input type="password" id="clave_usuario" name="clave_usuario" required placeholder="Contraseña">
+        <br>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+</body>
+
+</html>

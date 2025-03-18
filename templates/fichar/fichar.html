@@ -1,0 +1,845 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <title>Fichar</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #014672;
+            --secondary-color: #169180;
+            --accent-color: #4783f1;
+            --danger-color: #357ab7;
+            --warning-color: #4783f1;
+            --light-bg: #f5f7fa;
+            --dark-bg: #014672;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-color: #169180;
+            --shadow: 0 4px 15px rgba(72, 129, 227, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 80px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px 0;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--light-text);
+            text-align: center;
+        }
+
+        .nav-item {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 24px;
+        }
+
+        .main-content {
+            flex: 1;
+            margin-left: 80px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+        }
+
+
+
+        .content-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 20px;
+            flex: 1;
+        }
+
+        .page-title {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .main-form {
+            width: 100%;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        #contador {
+            display: block;
+            font-size: 36px;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .tab-container {
+            margin-bottom: 20px;
+        }
+
+        .tab-headers {
+            list-style: none;
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: white;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+
+        .map-container {
+            height: 400px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: var(--warning-color);
+            color: white;
+        }
+
+        .description-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 16px;
+            margin: 10px 0;
+            resize: none;
+        }
+
+        .logout-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--danger-color);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: var(--accent-color);
+            padding: 15px 25px;
+        }
+
+        .refresh-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--secondary-color);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 15px;
+        }
+
+        .registros-container {
+            list-style: none;
+        }
+
+        .registro-item {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+        }
+
+        .registro-item p {
+            margin: 5px 0;
+        }
+
+        div h2 {
+            margin-bottom: 20px;
+        }
+
+        .filter-options {
+            margin-bottom: 20px;
+            gap: 10px;
+            display: none;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: white;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .filter-btn.active {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        #total {
+            font-size: 24px;
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 50px;
+                padding: 10px 0;
+            }
+
+            .logo {
+                margin-bottom: 20px;
+            }
+
+            .nav-item {
+                padding: 12px 0;
+            }
+
+            .nav-item i {
+                font-size: 20px;
+            }
+
+            .main-content {
+                margin-left: 50px;
+                padding: 10px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .user-profile {
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+
+            .filter-options {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .content-container {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 1.2rem;
+                text-align: center;
+            }
+
+            #contador {
+                font-size: 28px;
+                text-align: center;
+            }
+
+            .map-container {
+                height: 500px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .description-input {
+                padding: 8px;
+                font-size: 14px;
+            }
+
+            .logout-btn {
+                padding: 8px 16px;
+                font-size: 14px;
+                width: 100%;
+            }
+
+            .logout-btn:hover {
+                padding: 8px 16px;
+            }
+
+            .refresh-btn {
+                width: 100%;
+            }
+
+            .registro-item {
+                padding: 10px;
+            }
+        }
+
+       
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 40px;
+            }
+
+            .logo {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .nav-item i {
+                font-size: 18px;
+            }
+
+            .main-content {
+                margin-left: 40px;
+                padding: 8px;
+            }
+
+            .content-container {
+                padding: 10px;
+            }
+
+            .page-title {
+                font-size: 1rem;
+            }
+
+            #contador {
+                font-size: 24px;
+            }
+
+            .map-container {
+                width: 100%;
+            }
+
+            .filter-btn {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                padding: 8px;
+                font-size: 13px;
+            }
+
+            .description-input {
+                padding: 6px;
+                font-size: 13px;
+            }
+
+            #total {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="sidebar">
+        <div class="logo">
+            <i class="fas fa-clock"></i>
+        </div>
+        <div id="home" class="nav-item tab" data-tab="mapa">
+            <i class="fas fa-home"></i>
+        </div>
+        <div id="calendario" class="nav-item tab" data-tab="hoy">
+            <i class="fas fa-calendar-alt"></i>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+        <div class="header">
+            <div class="user-profile">
+                <button type="button" onclick="location.href='/logoutf/'" class="logout-btn">Cerrar Sesión</button>
+            </div>
+            <div class="filter-options">
+                <button id="filter-day" class="filter-btn active" data-filter="day">Día</button>
+                <button id="filter-day" class="filter-btn" data-filter="week">Semana</button>
+                <button id="filter-day" class="filter-btn" data-filter="month">Mes</button>
+            </div>
+
+
+        </div>
+
+        <div class="content-container">
+            <h1 class="page-title">Query TimeControl</h1>
+
+            <form action="/registrar/" method="POST" class="main-form">
+                {% csrf_token %}
+                <label id="contador">00:00:00</label>
+
+                <div class="tab-container">
+                    <nav>
+                        </ul>
+                    </nav>
+
+                    <div class="tab-content">
+                        <div id="mapa" class="tab-pane active" style="display: block;">
+                            <div id="mapid" class="map-container"></div>
+                        </div>
+                        <div id="hoy" class="tab-pane" style="display: none;">
+                            <h2>Registros</h2>
+                            <button type="button" id="refresh-registros" class="refresh-btn">Actualizar
+                                Registros</button>
+                            <ul id="registros-list" class="registros-container container-fluid row"></ul>
+                            <p id="total">00:00:00</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" id="entrada" class="btn-primary">Entrada</button>
+                </div>
+
+                <textarea name="descripcion" id="descripcion" class="description-input"
+                    placeholder="Añadir descripción..."></textarea>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        
+
+        const $ = selector => document.querySelector(selector);
+        const $$ = selector => document.querySelectorAll(selector);
+
+        let currentFilter = 'day';
+
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                currentFilter = this.dataset.filter;
+                fetchRegistros();
+            });
+        });
+
+async function handleRegistros() {
+    try {
+        const response = await fetch(`/obtenerhorarios/?filter=${currentFilter}`);
+        const data = await response.json();
+        const registrosList = document.getElementById('registros-list');
+        registrosList.innerHTML = '';
+
+        let totalSeconds = 0;
+        
+        data.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+
+        for (let i = 0; i < data.length - 1; i++) {
+            if (data[i].tipo === 0 && data[i + 1].tipo === 1) { 
+                const entrada = new Date(data[i + 1].fecha);
+                const salida = new Date(data[i].fecha);
+                const diff = Math.abs(salida - entrada) / 1000; 
+                totalSeconds += diff;
+            }
+        }
+
+        if (data.length > 0 && data[0].tipo === 1) {
+            const entrada = new Date(data[0].fecha);
+            const now = new Date();
+            const diff = Math.abs(now - entrada) / 1000;
+            totalSeconds += diff;
+        }
+
+        data.forEach((registro) => {
+            const registroItem = document.createElement('div');
+            registroItem.className = 'registro-item';
+
+            const fecha = new Date(registro.fecha).toLocaleString();
+            const tipo = registro.tipo === 1 ? 'Entrada' : 'Salida';
+            const { latitud: latitude, longitud: longitude } = registro;
+
+            registroItem.innerHTML = `
+                <p><strong>Fecha:</strong> ${fecha}</p>
+                <p><strong>Tipo:</strong> ${tipo}</p>
+                <p><strong>Descripción:</strong> ${registro.descripcion || 'Sin descripción'}</p>
+                <p><strong>Coordenadas:</strong> ${latitude}, ${longitude}</p>
+                <i class="fas fa-map-marker-alt imagenmapa" style="font-size: 15px; color:#169180;"></i>
+            `;
+
+            registroItem.querySelector('.imagenmapa').addEventListener('click', function() {
+                const existingMap = document.querySelector('#registro-map');
+                if (existingMap) existingMap.remove();
+
+                const mapDiv = document.createElement('div');
+                mapDiv.id = 'registro-map';
+                mapDiv.style.cssText = 'height: 300px; margin-top: 10px;';
+                this.parentElement.appendChild(mapDiv);
+
+                const [lat, lng] = [parseFloat(latitude), parseFloat(longitude)];
+
+                if (!isNaN(lat) && !isNaN(lng)) {
+                    const map = L.map('registro-map', {
+                        zoomControl: false,
+                        scrollWheelZoom: false,
+                        doubleClickZoom: false,
+                        boxZoom: false,
+                        keyboard: false,
+                        dragging: false
+                    }).setView([lat, lng], 16);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '© OpenStreetMap contributors',
+                        maxZoom: 16,
+                        minZoom: 16
+                    }).addTo(map);
+
+                    L.marker([lat, lng]).addTo(map);
+                    setTimeout(() => map.invalidateSize(), 100);
+                } else {
+                    mapDiv.innerHTML = '<div style="text-align: center; padding: 20px;">Coordenadas inválidas o no disponibles</div>';
+                }
+            });
+
+            registrosList.appendChild(registroItem);
+        });
+
+        const hours = Math.floor(totalSeconds / 3600);
+        const minutes = Math.floor((totalSeconds % 3600) / 60);
+        const seconds = Math.floor(totalSeconds % 60);
+        const timeString = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+        document.getElementById('total').textContent = `Tiempo total: ${timeString}`;
+
+    } catch (error) {
+        console.error('Error handling registros:', error);
+    }
+}
+
+document.getElementById('refresh-registros').addEventListener('click', handleRegistros);
+document.addEventListener('DOMContentLoaded', handleRegistros);
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', handleRegistros);
+});
+        class TabManager {
+            constructor() {
+                this.tabs = $$('.tab');
+                this.panes = $$('.tab-pane');
+                this.init();
+            }
+
+            init() {
+                this.tabs.forEach(tab => {
+                    tab.addEventListener('click', () => this.switchTab(tab));
+                });
+            }
+
+            switchTab(selectedTab) {
+                this.tabs.forEach(tab => tab.classList.remove('active'));
+                this.panes.forEach(pane => pane.style.display = 'none');
+
+                selectedTab.classList.add('active');
+
+                const targetPane = $(`#${selectedTab.dataset.tab}`);
+                if (targetPane) {
+                    targetPane.style.display = 'block';
+                }
+            }
+        }
+
+        class TimeTracker {
+            constructor() {
+                this.checkAndResetTimer();
+                this.isRunning = localStorage.getItem('entradaState') === 'running';
+                this.intervalId = null;
+                this.startTime = parseInt(localStorage.getItem('startTime')) || null;
+                this.init();
+            }
+
+            checkAndResetTimer() {
+                const lastDate = localStorage.getItem('lastDate');
+                const today = new Date().toDateString();
+
+                if (lastDate !== today) {
+                    this.seconds = 0;
+                    localStorage.setItem('savedSeconds', '0');
+                    localStorage.setItem('lastDate', today);
+                    localStorage.removeItem('startTime');
+                    localStorage.setItem('entradaState', 'stopped');
+                } else {
+                    this.seconds = parseInt(localStorage.getItem('savedSeconds')) || 0;
+                }
+            }
+
+            init() {
+                if (this.isRunning && this.startTime) {
+                    const currentTime = Date.now();
+                    this.seconds = Math.floor((currentTime - this.startTime) / 1000);
+                    this.start();
+                }
+                this.updateDisplay();
+
+                document.addEventListener('visibilitychange', () => {
+                    if (document.hidden) {
+                        if (this.intervalId) {
+                            clearInterval(this.intervalId);
+                        }
+                    } else {
+                        this.checkAndResetTimer();
+                        if (this.isRunning && this.startTime) {
+                            const currentTime = Date.now();
+                            this.seconds = Math.floor((currentTime - this.startTime) / 1000);
+                            this.start();
+                        }
+                    }
+                });
+            }
+
+            updateDisplay() {
+                const hrs = Math.floor(this.seconds / 3600).toString().padStart(2, '0');
+                const mins = Math.floor((this.seconds % 3600) / 60).toString().padStart(2, '0');
+                const secs = (this.seconds % 60).toString().padStart(2, '0');
+
+                const contadorElement = $('#contador');
+                if (contadorElement) {
+                    contadorElement.textContent = `${hrs}:${mins}:${secs}`;
+                }
+            }
+
+            start() {
+                if (!this.startTime) {
+                    this.startTime = Date.now() - (this.seconds * 1000);
+                    localStorage.setItem('startTime', this.startTime.toString());
+                }
+
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                }
+
+                this.intervalId = setInterval(() => {
+                    this.checkAndResetTimer();
+                    const currentTime = Date.now();
+                    this.seconds = Math.floor((currentTime - this.startTime) / 1000);
+                    this.updateDisplay();
+                    localStorage.setItem('savedSeconds', this.seconds.toString());
+                }, 1000);
+            }
+
+            stop() {
+                if (this.intervalId) {
+                    clearInterval(this.intervalId);
+                    this.intervalId = null;
+                }
+                localStorage.setItem('savedSeconds', this.seconds.toString());
+                this.startTime = null;
+                localStorage.removeItem('startTime');
+            }
+        }
+
+        class LocationManager {
+            constructor() {
+                this.map = null;
+                this.marker = null;
+                this.init();
+            }
+
+            init() {
+                navigator.geolocation.getCurrentPosition(
+                    pos => this.handleSuccess(pos),
+                    err => console.warn(`ERROR(${err.code}): ${err.message}`),
+                    {
+                        enableHighAccuracy: true,
+                        timeout: 5000,
+                        maximumAge: 0
+                    }
+                );
+            }
+
+            handleSuccess(pos) {
+                const { latitude, longitude } = pos.coords;
+                this.initMap(latitude, longitude);
+                this.saveCoordinates(latitude, longitude);
+            }
+
+            initMap(lat, lng) {
+                this.map = L.map('mapid', {
+                    zoomControl: false,
+                    scrollWheelZoom: false,
+                    doubleClickZoom: false,
+                    boxZoom: false,
+                    keyboard: false,
+                    dragging: false
+                }).setView([lat, lng], 16);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 19
+                }).addTo(this.map);
+
+                L.marker([lat, lng]).addTo(this.map);
+            }
+
+            saveCoordinates(lat, lng) {
+                localStorage.setItem('latitud', lat);
+                localStorage.setItem('longitud', lng);
+                window.latitude = lat.toString();
+                window.longitude = lng.toString();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabManager = new TabManager();
+            const timeTracker = new TimeTracker();
+            const locationManager = new LocationManager();
+            const entradaBtn = $('#entrada');
+            const isRunning = localStorage.getItem('entradaState') === 'running';
+            if (isRunning) {
+                entradaBtn.style.backgroundColor = '#d9534f';
+                entradaBtn.textContent = 'Salida';
+            } else {
+                entradaBtn.style.backgroundColor = '#5cb85c';
+                entradaBtn.textContent = 'Entrada';
+            }
+            entradaBtn.addEventListener('click', async function () {
+                const isRunning = localStorage.getItem('entradaState') === 'running';
+
+                if (isRunning) {
+                    timeTracker.stop();
+                    this.style.backgroundColor = '#5cb85c';
+                    this.textContent = 'Entrada';
+                } else {
+                    timeTracker.start();
+                    this.style.backgroundColor = '#d9534f';
+                    this.textContent = 'Salida';
+                }
+
+                localStorage.setItem('entradaState', isRunning ? 'stopped' : 'running');
+                localStorage.setItem('buttonState', isRunning ? 'entrada' : 'salida');
+                try {
+                    const response = await fetch('/registrar/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': $('[name=csrfmiddlewaretoken]').value
+                        },
+                        body: JSON.stringify({
+                            latitude: window.latitude,
+                            longitude: window.longitude,
+                            tipo: !isRunning ? 1 : 0,
+                            descripcion: $('#descripcion').value,
+                            seconds: localStorage.getItem('seconds')
+                        })
+                    });
+                    const data = await response.json();
+                    console.log(data);
+                } catch (error) {
+                    console.error('Error:', error);
+                }
+            });
+
+            $('#registro').addEventListener('click', () => {
+                window.location.href = '/registro/';
+            });
+        });
+
+        document.getElementById("calendario").addEventListener('click', function() {
+            document.querySelector('.filter-options').style.display = 'flex';
+        });
+
+        document.getElementById("home").addEventListener('click', function() {
+            document.querySelector('.filter-options').style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>
