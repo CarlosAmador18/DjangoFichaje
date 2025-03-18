@@ -385,3 +385,4 @@ def obtenerhorarios(request):
         return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse(registros_formateados, safe=False)
+
